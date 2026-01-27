@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuEng Tech - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .auth-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+            overflow: hidden;
+        }
+
+        .auth-header {
+            background: linear-gradient(135deg, #155724 0%, #38ef7d 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .auth-header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .auth-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .auth-body {
+            padding: 40px 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #11998e;
+            box-shadow: 0 0 0 3px rgba(17, 153, 142, 0.1);
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(17, 153, 142, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-footer a {
+            color: #11998e;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            font-weight: normal;
+            font-size: 14px;
+        }
+
+        .error-message {
+            background-color: #fee;
+            color: #c33;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+        }
+
+        .dashboard.show {
+            display: block;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .dashboard-header h2 {
+            color: #11998e;
+            font-size: 24px;
+        }
+
+        .logout-btn {
+            padding: 10px 20px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .logout-btn:hover {
+            background: #c82333;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            padding: 20px;
+            border-radius: 12px;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .activity-section {
+            margin-top: 30px;
+        }
+
+        .activity-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .activity-list {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .activity-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .activity-info {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .activity-details {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .activity-time {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .solutions-section {
+            margin-top: 30px;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .solution-card {
+            padding: 20px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(17, 153, 142, 0.3);
+        }
+
+        .solution-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .solution-desc {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Form -->
+    <div class="auth-container" id="loginForm">
+        <div class="auth-header">
+            <h1>SuEng Tech</h1>
+            <p>Login to access your solutions</p>
+        </div>
+        <div class="auth-body">
+            <div class="error-message" id="loginError"></div>
+            
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" required placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="loginPassword" required placeholder="Enter your password">
+                        <span class="toggle-password" onclick="togglePassword('loginPassword')">👁️</span>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Remember me</label>
+                </div>
+
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+
+            <div class="form-footer">
+                Don't have an account? <a href="#" onclick="showSignup()">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Form -->
+    <div class="auth-container hidden" id="signupForm">
+        <div class="auth-header">
+            <h1>Create Account</h1>
+            <p>Join SuEng Tech Platform</p>
+        </div>
+        <div class="auth-body">
+            <div class="error-message" id="signupError"></div>
+            <div class="success-message" id="signupSuccess"></div>
+            
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" required placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="signupPassword" required placeholder="Create a strong password" minlength="8">
+                        <span class="toggle-password" onclick="togglePassword('signupPassword')">👁️</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <div class="password-container">
+                        <input type="password" id="signupConfirmPassword" required placeholder="Re-enter your password">
+                        <span class="toggle-password" onclick="togglePassword('signupConfirmPassword')">👁️</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+
+            <div class="form-footer">
+                Already have an account? <a href="#" onclick="showLogin()">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard" id="dashboard">
+        <div class="dashboard-header">
+            <h2>Welcome, <span id="userName">User</span>!</h2>
+            <button class="logout-btn" onclick="handleLogout()">Logout</button>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Logins</div>
+                <div class="stat-value" id="totalLogins">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Session Duration</div>
+                <div class="stat-value" id="sessionDuration">0m</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Solutions Accessed</div>
+                <div class="stat-value" id="solutionsAccessed">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Location</div>
+                <div class="stat-value" id="userLocation" style="font-size: 18px;">--</div>
+            </div>
+        </div>
+
+        <div class="solutions-section">
+            <h3>Available Solutions</h3>
+            <div class="solutions-grid">
+                <div class="solution-card" onclick="accessSolution('Solar PV Calculator')">
+                    <div class="solution-name">Solar PV Calculator</div>
+                    <div class="solution-desc">Calculate solar panel requirements</div>
+                </div>
+                <div class="solution-card" onclick="accessSolution('Energy Optimizer')">
+                    <div class="solution-name">Energy Optimizer</div>
+                    <div class="solution-desc">Optimize energy consumption</div>
+                </div>
+                <div class="solution-card" onclick="accessSolution('Grid Analysis Tool')">
+                    <div class="solution-name">Grid Analysis Tool</div>
+                    <div class="solution-desc">Analyze power grid performance</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="activity-section">
+            <h3>Recent Activity</h3>
+            <div class="activity-list" id="activityList">
+                <div class="activity-item">
+                    <div class="activity-info">
+                        <div class="activity-title">No activity yet</div>
+                        <div class="activity-details">Start accessing solutions to see your activity</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulate user data storage (in production, this would be handled by backend)
+        let currentUser = null;
+        let sessionStartTime = null;
+        let activityLog = [];
+
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+
+        function showSignup() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('signupForm').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('signupForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            const errorEl = document.getElementById('signupError');
+            const successEl = document.getElementById('signupSuccess');
+            
+            errorEl.classList.remove('show');
+            successEl.classList.remove('show');
+
+            if (password !== confirmPassword) {
+                errorEl.textContent = 'Passwords do not match!';
+                errorEl.classList.add('show');
+                return;
+            }
+
+            if (password.length < 8) {
+                errorEl.textContent = 'Password must be at least 8 characters long!';
+                errorEl.classList.add('show');
+                return;
+            }
+
+            // Simulate user registration
+            const userData = {
+                name: name,
+                email: email,
+                password: password, // In production: hash this!
+                createdAt: new Date().toISOString(),
+                totalLogins: 0,
+                activityLog: []
+            };
+
+            console.log('User Registration Data:', userData);
+
+            successEl.textContent = 'Account created successfully! Please login.';
+            successEl.classList.add('show');
+
+            // Clear form
+            document.getElementById('signupName').value = '';
+            document.getElementById('signupEmail').value = '';
+            document.getElementById('signupPassword').value = '';
+            document.getElementById('signupConfirmPassword').value = '';
+
+            // Redirect to login after 2 seconds
+            setTimeout(() => {
+                showLogin();
+                successEl.classList.remove('show');
+            }, 2000);
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            const errorEl = document.getElementById('loginError');
+            errorEl.classList.remove('show');
+
+            // Simulate authentication (in production, verify against backend)
+            if (email && password) {
+                // Get location
+                getUserLocation();
+
+                currentUser = {
+                    name: email.split('@')[0],
+                    email: email,
+                    totalLogins: Math.floor(Math.random() * 50) + 1,
+                    solutionsAccessed: Math.floor(Math.random() * 20)
+                };
+
+                sessionStartTime = new Date();
+
+                // Log login event
+                console.log('User Login Event:', {
+                    email: email,
+                    timestamp: sessionStartTime.toISOString(),
+                    rememberMe: rememberMe,
+                    ipAddress: 'Simulated IP',
+                    userAgent: navigator.userAgent
+                });
+
+                // Show dashboard
+                document.getElementById('loginForm').classList.add('hidden');
+                document.getElementById('dashboard').classList.add('show');
+                
+                updateDashboard();
+                startSessionTimer();
+
+            } else {
+                errorEl.textContent = 'Invalid email or password!';
+                errorEl.classList.add('show');
+            }
+        }
+
+        function updateDashboard() {
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('totalLogins').textContent = currentUser.totalLogins;
+            document.getElementById('solutionsAccessed').textContent = currentUser.solutionsAccessed;
+        }
+
+        function startSessionTimer() {
+            setInterval(() => {
+                if (sessionStartTime) {
+                    const now = new Date();
+                    const diff = Math.floor((now - sessionStartTime) / 1000 / 60);
+                    document.getElementById('sessionDuration').textContent = diff + 'm';
+                }
+            }, 60000); // Update every minute
+        }
+
+        function getUserLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const lat = position.coords.latitude.toFixed(2);
+                        const lon = position.coords.longitude.toFixed(2);
+                        document.getElementById('userLocation').textContent = `${lat}, ${lon}`;
+                        
+                        console.log('User Location:', {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                            accuracy: position.coords.accuracy
+                        });
+                    },
+                    (error) => {
+                        document.getElementById('userLocation').textContent = 'Unavailable';
+                        console.log('Location access denied or unavailable');
+                    }
+                );
+            }
+        }
+
+        function accessSolution(solutionName) {
+            const timestamp = new Date();
+            
+            // Log solution access
+            const accessEvent = {
+                solution: solutionName,
+                timestamp: timestamp.toISOString(),
+                sessionDuration: Math.floor((timestamp - sessionStartTime) / 1000 / 60) + ' minutes'
+            };
+
+            console.log('Solution Access Event:', accessEvent);
+
+            activityLog.unshift(accessEvent);
+            currentUser.solutionsAccessed++;
+            
+            updateActivityList();
+            document.getElementById('solutionsAccessed').textContent = currentUser.solutionsAccessed;
+
+            // Simulate navigation to solution
+            alert(`Accessing ${solutionName}...\n\nIn production, this would redirect to:\nhttps://sueng-tech.com/solutions/${solutionName.toLowerCase().replace(/ /g, '-')}`);
+        }
+
+        function updateActivityList() {
+            const activityListEl = document.getElementById('activityList');
+            
+            if (activityLog.length === 0) return;
+
+            activityListEl.innerHTML = activityLog.map(activity => `
+                <div class="activity-item">
+                    <div class="activity-info">
+                        <div class="activity-title">Accessed: ${activity.solution}</div>
+                        <div class="activity-details">Duration: ${activity.sessionDuration}</div>
+                    </div>
+                    <div class="activity-time">${new Date(activity.timestamp).toLocaleTimeString()}</div>
+                </div>
+            `).join('');
+        }
+
+        function handleLogout() {
+            const sessionEndTime = new Date();
+            const sessionDuration = Math.floor((sessionEndTime - sessionStartTime) / 1000 / 60);
+
+            // Log logout event
+            console.log('User Logout Event:', {
+                email: currentUser.email,
+                loginTime: sessionStartTime.toISOString(),
+                logoutTime: sessionEndTime.toISOString(),
+                sessionDuration: sessionDuration + ' minutes',
+                solutionsAccessed: currentUser.solutionsAccessed,
+                activityLog: activityLog
+            });
+
+            // Reset state
+            currentUser = null;
+            sessionStartTime = null;
+            activityLog = [];
+
+            // Show login form
+            document.getElementById('dashboard').classList.remove('show');
+            document.getElementById('loginForm').classList.remove('hidden');
+
+            // Clear login form
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('rememberMe').checked = false;
+        }
+    </script>
+</body>
+</html>
