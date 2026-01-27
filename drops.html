@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar PV Module Selector</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+
+        select:hover {
+            border-color: #667eea;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        select:disabled {
+            background-color: #f5f5f5;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .module-details {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-radius: 12px;
+            display: none;
+        }
+
+        .module-details.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .module-details h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .detail-value {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .reset-btn {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .reset-btn:active {
+            transform: translateY(0);
+        }
+
+        .feedback-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .feedback-container h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .feedback-container .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            resize: vertical;
+            min-height: 120px;
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea::placeholder {
+            color: #999;
+        }
+
+        .submit-btn {
+            margin-top: 15px;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .feedback-success {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .feedback-success.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <h1>Solar PV Module Selector</h1>
+            <p class="subtitle">Select your preferred technology and manufacturer</p>
+
+            <div class="form-group">
+                <label for="technology">Type of Technology</label>
+                <select id="technology">
+                    <option value="">-- Select Technology --</option>
+                    <option value="Polycrystalline">Polycrystalline</option>
+                    <option value="Mono PERC">Mono PERC</option>
+                    <option value="Topcon">Topcon</option>
+                    <option value="HJT">HJT</option>
+                    <option value="Any">Any (Choose by Manufacturer)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="manufacturer">Manufacturer</label>
+                <select id="manufacturer" disabled>
+                    <option value="">-- Select Manufacturer --</option>
+                    <option value="Vikram">Vikram</option>
+                    <option value="Warree">Warree</option>
+                    <option value="TATA">TATA</option>
+                    <option value="Jinko">Jinko</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="module">Module Capacity</label>
+                <select id="module" disabled>
+                    <option value="">-- Select Module --</option>
+                </select>
+            </div>
+
+            <div class="module-details" id="moduleDetails">
+                <h3>Selected Module Details</h3>
+                <div class="detail-item">
+                    <span class="detail-label">Technology:</span>
+                    <span class="detail-value" id="detailTech">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Manufacturer:</span>
+                    <span class="detail-value" id="detailMfr">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Module Capacity:</span>
+                    <span class="detail-value" id="detailModule">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Status:</span>
+                    <span class="detail-value" id="detailStatus">Ready to send to backend</span>
+                </div>
+                <button class="reset-btn" onclick="resetForm()">Reset Selection</button>
+            </div>
+        </div>
+
+        <div class="feedback-container">
+            <h2>Feedback</h2>
+            <p class="subtitle">Share your thoughts and suggestions with us</p>
+            
+            <div class="form-group">
+                <label for="feedback">Your Feedback</label>
+                <textarea 
+                    id="feedback" 
+                    placeholder="Tell us about your experience with the module selector..."></textarea>
+            </div>
+
+            <button class="submit-btn" onclick="submitFeedback()">Submit Feedback</button>
+            
+            <div class="feedback-success" id="feedbackSuccess">
+                ✓ Thank you! Your feedback has been submitted successfully.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample module data structure
+        const moduleData = {
+            Vikram: {
+                Polycrystalline: [350, 400, 450],
+                'Mono PERC': [400, 450, 500],
+                Topcon: [520, 550, 600, 650],
+                HJT: [580, 620, 660]
+            },
+            Warree: {
+                Polycrystalline: [340, 380, 420],
+                'Mono PERC': [410, 460, 510],
+                Topcon: [530, 570, 610],
+                HJT: [590, 630, 670]
+            },
+            TATA: {
+                Polycrystalline: [360, 390, 440],
+                'Mono PERC': [420, 470, 520],
+                Topcon: [540, 580, 620],
+                HJT: [600, 640, 680]
+            },
+            Jinko: {
+                Polycrystalline: [370, 410, 450],
+                'Mono PERC': [430, 480, 530],
+                Topcon: [550, 590, 630],
+                HJT: [610, 650, 690]
+            }
+        };
+
+        const techSelect = document.getElementById('technology');
+        const mfrSelect = document.getElementById('manufacturer');
+        const moduleSelect = document.getElementById('module');
+        const moduleDetails = document.getElementById('moduleDetails');
+
+        // Enable manufacturer dropdown when technology is selected
+        techSelect.addEventListener('change', function() {
+            if (this.value) {
+                mfrSelect.disabled = false;
+                mfrSelect.value = '';
+                moduleSelect.disabled = true;
+                moduleSelect.value = '';
+                moduleSelect.innerHTML = '<option value="">-- Select Module --</option>';
+                moduleDetails.classList.remove('show');
+            } else {
+                mfrSelect.disabled = true;
+                mfrSelect.value = '';
+                moduleSelect.disabled = true;
+                moduleSelect.value = '';
+                moduleDetails.classList.remove('show');
+            }
+        });
+
+        // Populate modules when manufacturer is selected
+        mfrSelect.addEventListener('change', function() {
+            const tech = techSelect.value;
+            const mfr = this.value;
+
+            if (tech && mfr) {
+                moduleSelect.innerHTML = '<option value="">-- Select Module --</option>';
+                
+                if (moduleData[mfr] && moduleData[mfr][tech]) {
+                    const modules = moduleData[mfr][tech];
+                    modules.forEach(capacity => {
+                        const option = document.createElement('option');
+                        option.value = capacity;
+                        option.textContent = `${capacity} kWp`;
+                        moduleSelect.appendChild(option);
+                    });
+                    moduleSelect.disabled = false;
+                } else {
+                    moduleSelect.disabled = true;
+                    alert('No modules available for this combination');
+                }
+                moduleDetails.classList.remove('show');
+            } else {
+                moduleSelect.disabled = true;
+                moduleSelect.innerHTML = '<option value="">-- Select Module --</option>';
+                moduleDetails.classList.remove('show');
+            }
+        });
+
+        // Show details when module is selected
+        moduleSelect.addEventListener('change', function() {
+            const tech = techSelect.value;
+            const mfr = mfrSelect.value;
+            const module = this.value;
+
+            if (tech && mfr && module) {
+                document.getElementById('detailTech').textContent = tech;
+                document.getElementById('detailMfr').textContent = mfr;
+                document.getElementById('detailModule').textContent = `${module} kWp`;
+                moduleDetails.classList.add('show');
+
+                // Simulate sending data to backend
+                console.log('Selected Module Data:', {
+                    technology: tech,
+                    manufacturer: mfr,
+                    moduleCapacity: module,
+                    timestamp: new Date().toISOString()
+                });
+            } else {
+                moduleDetails.classList.remove('show');
+            }
+        });
+
+        function resetForm() {
+            techSelect.value = '';
+            mfrSelect.value = '';
+            mfrSelect.disabled = true;
+            moduleSelect.value = '';
+            moduleSelect.disabled = true;
+            moduleSelect.innerHTML = '<option value="">-- Select Module --</option>';
+            moduleDetails.classList.remove('show');
+        }
+
+        function submitFeedback() {
+            const feedbackText = document.getElementById('feedback').value.trim();
+            const successMsg = document.getElementById('feedbackSuccess');
+
+            if (!feedbackText) {
+                alert('Please enter your feedback before submitting.');
+                return;
+            }
+
+            // Simulate sending feedback to backend
+            console.log('Feedback Submitted:', {
+                feedback: feedbackText,
+                timestamp: new Date().toISOString()
+            });
+
+            // Show success message
+            successMsg.classList.add('show');
+
+            // Clear textarea
+            document.getElementById('feedback').value = '';
+
+            // Hide success message after 3 seconds
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
