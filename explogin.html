@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -99,7 +99,7 @@
                     <div class="form-group"><label>Full Name</label><input type="text" id="signupName" required></div>
                     <div class="form-group"><label>Email</label><input type="email" id="signupEmail" required></div>
                     <div class="form-group"><label>Password</label><div style="position:relative;">
-    <input type="password" id="loginPassword" required style="padding-right:40px;"><span onclick="togglePasswordIcon('loginPassword', this)" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer;">👁️</span></div></div>
+    <input type="password" id="signupPassword" required style="padding-right:40px;"><span onclick="togglePasswordIcon('signupPassword', this)" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer;">👁️</span></div></div>
                     <button type="submit" class="submit-btn">Create Account</button>
                 </form>
                 <p style="text-align:center; margin-top:15px;">Have an account? <a href="#" onclick="toggleAuth(false)">Login</a></p>
@@ -173,10 +173,10 @@
             try {
                 const cred = await createUserWithEmailAndPassword(auth, email, password);
 
-                // 🔥 update login count
-                await updateDoc(doc(db, "users", cred.user.uid), {
-                totalLogins: increment(1)
-                });
+                // // 🔥 update login count
+                // await updateDoc(doc(db, "users", cred.user.uid), {
+                // totalLogins: increment(1)
+                // });
 
                 // Update display name
                 await updateProfile(cred.user, { displayName: name });
@@ -211,7 +211,21 @@
                 errEl.textContent = "Invalid credentials"; errEl.style.display = 'block';
             }
         });
-      
+        
+        window.forgotPassword = async () => {
+        const email = document.getElementById('loginEmail').value;
+
+        if (!email) {
+            alert("Please enter your email first.");
+            return;
+        }
+        try {
+            await sendPasswordResetEmail(auth, email);
+            alert("Password reset email sent! Check your inbox.");
+        } catch (error) {
+        alert(error.message);
+        }
+        };
 
         // Auth Observer
         onAuthStateChanged(auth, (user) => {
