@@ -67,750 +67,6 @@
             border-radius: 8px;
             font-size: 16px;
             color: white;
-            background-color:#0D8359;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            padding-right: 40px;
-        }
-
-        select:hover {
-            border-color: #667eea;
-        }
-
-        select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        select:disabled {
-            background-color: #f5f5f5;
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-
-        .module-details {
-            margin-top: 30px;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            border-radius: 12px;
-            display: none;
-        }
-
-        .module-details.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .module-details h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        .detail-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .detail-item:last-child {
-            border-bottom: none;
-        }
-
-        .detail-label {
-            color: #666;
-            font-weight: 500;
-        }
-
-        .detail-value {
-            color: #333;
-            font-weight: 600;
-        }
-
-        .reset-btn {
-            margin-top: 20px;
-            width: 100%;
-            padding: 12px;
-            background-color: #0D8359;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .reset-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .reset-btn:active {
-            transform: translateY(0);
-        }
-
-        .feedback-container {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .feedback-container h2 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 24px;
-            text-align: center;
-        }
-
-        .feedback-container .subtitle {
-            color: #666;
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 14px;
-        }
-
-        textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-            color: #333;
-            background-color: #0D8359;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            resize: vertical;
-            min-height: 120px;
-            transition: all 0.3s ease;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        textarea::placeholder {
-            color: #ffffff;
-        }
-
-        .submit-btn {
-            margin-top: 15px;
-            width: 100%;
-            padding: 12px;
-            background-color: #0D8359;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .submit-btn:hover {
-            background-color: #155724 ;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .feedback-success {
-            display: none;
-            margin-top: 15px;
-            padding: 12px;
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .feedback-success.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-    </style>
-</head>
-<body>
-    <div class="wrapper">
-        <div class="container">
-            <h1>Solar PV Module Selector</h1>
-            <p class="subtitle">Select your preferred technology and manufacturer</p>
-
-            <div class="form-group">
-                <label for="technology">Type of Technology</label>
-                <select id="technology">
-                    <option value="">-- Select Technology --</option>
-                    <option value="Polycrystalline">Polycrystalline</option>
-                    <option value="Mono PERC">Mono PERC</option>
-                    <option value="Topcon">Topcon</option>
-                    <option value="HJT">HJT</option>
-                    <option value="Any">Any (Choose by Manufacturer)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="manufacturer">Manufacturer</label>
-                <select id="manufacturer">
-                    <option value="">-- Select Manufacturer --</option>
-                    <option value="Vikram">Vikram</option>
-                    <option value="Warree">Warree</option>
-                    <option value="TATA">TATA</option>
-                    <option value="Jinko">Jinko</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="module">Module Capacity</label>
-                <select id="module">
-                    <option value="">-- Select Module --</option>
-                </select>
-            </div>
-
-            <div class="module-details" id="moduleDetails">
-                <h3 style="color: #0D8359;">Selected Module Details</h3>
-                <div class="detail-item">
-                    <span class="detail-label">Technology:</span>
-                    <span class="detail-value" id="detailTech">-</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Manufacturer:</span>
-                    <span class="detail-value" id="detailMfr">-</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Module Capacity:</span>
-                    <span class="detail-value" id="detailModule">-</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Status:</span>
-                    <span class="detail-value" id="detailStatus">Ready to send to backend</span>
-                </div>
-                <button class="reset-btn" id="resetBtn">Reset Selection</button>
-            </div>
-        </div>
-
-        <div class="feedback-container">
-            <h2>Feedback</h2>
-            <p class="subtitle">Share your thoughts and suggestions with us</p>
-            
-            <div class="form-group">
-                <label for="feedback">Your Feedback</label>
-                <textarea style="color: white;"
-                    id="feedback" 
-                    placeholder="Tell us about your experience with the module selector..."></textarea>
-            </div>
-
-            <button class="submit-btn" id="submitBtn">Submit Feedback</button>
-            
-            <div class="feedback-success" id="feedbackSuccess">
-                ✓ Thank you! Your feedback has been submitted successfully.
-            </div>
-        </div>
-    </div>
-
-    <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-    import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyBLsFgjA2EDVCw1TZFejwY3mOzu5aIDpF4",
-      authDomain: "sueng-tech-d854e.firebaseapp.com",
-      projectId: "sueng-tech-d854e",
-      storageBucket: "sueng-tech-d854e.appspot.com",
-      messagingSenderId: "868647762893",
-      appId: "1:868647762893:web:d1e5259263567bab7ca284"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const auth = getAuth(app);
-        // function getTechnologiesForManufacturer(mfr) {
-        //     return Object.keys(moduleData[mfr] || {});
-        // }
-        // Sample module data structure
-        const moduleData = {
-            Vikram: {
-                Polycrystalline: [350, 400, 450],
-                'Mono PERC': [400, 450, 500],
-                Topcon: [520, 550, 600, 650],
-                HJT: [580, 620, 660]
-            },
-            Warree: {
-                Polycrystalline: [340, 380, 420],
-                'Mono PERC': [410, 460, 510],
-                Topcon: [530, 570, 610],
-                HJT: [590, 630, 670]
-            },
-            TATA: {
-                Polycrystalline: [360, 390, 440],
-                'Mono PERC': [420, 470, 520],
-                Topcon: [540, 580, 620],
-                HJT: [600, 640, 680]
-            },
-            Jinko: {
-                Polycrystalline: [370, 410, 450],
-                'Mono PERC': [430, 480, 530],
-                Topcon: [550, 590, 630],
-                HJT: [610, 650, 690]
-            }
-        };
-
-        
-
-        const techSelect = document.getElementById('technology');
-const mfrSelect = document.getElementById('manufacturer');
-const moduleSelect = document.getElementById('module');
-const moduleDetails = document.getElementById('moduleDetails');
-
-// ============================================
-// HELPER FUNCTIONS FOR BI-DIRECTIONAL FILTERING
-// ============================================
-
-// Get all manufacturers that have a specific technology
-function getManufacturersWithTechnology(tech) {
-    const mfrs = new Set();
-    for (let mfr in moduleData) {
-        if (moduleData[mfr][tech]) {
-            mfrs.add(mfr);
-        }
-    }
-    return Array.from(mfrs);
-}
-
-// Get all technologies that a manufacturer has
-function getTechnologiesForManufacturer(mfr) {
-    return Object.keys(moduleData[mfr] || {});
-}
-
-// Get all module capacities that have a specific technology
-function getModulesWithTechnology(tech) {
-    const modules = new Set();
-    for (let mfr in moduleData) {
-        if (moduleData[mfr][tech]) {
-            moduleData[mfr][tech].forEach(m => modules.add(m));
-        }
-    }
-    return Array.from(modules).sort((a, b) => a - b);
-}
-
-// Get all module capacities for a given manufacturer
-function getModulesForManufacturer(mfr) {
-    const modules = new Set();
-    for (let tech in moduleData[mfr] || {}) {
-        moduleData[mfr][tech].forEach(m => modules.add(m));
-    }
-    return Array.from(modules).sort((a, b) => a - b);
-}
-
-// Get all technologies that have a specific module capacity
-function getTechnologiesWithModule(module) {
-    const techs = new Set();
-    for (let mfr in moduleData) {
-        for (let tech in moduleData[mfr]) {
-            if (moduleData[mfr][tech].includes(Number(module))) {
-                techs.add(tech);
-            }
-        }
-    }
-    return Array.from(techs);
-}
-
-// Get all manufacturers that have a specific module capacity
-function getManufacturersWithModule(module) {
-    const mfrs = new Set();
-    for (let mfr in moduleData) {
-        for (let tech in moduleData[mfr]) {
-            if (moduleData[mfr][tech].includes(Number(module))) {
-                mfrs.add(mfr);
-            }
-        }
-    }
-    return Array.from(mfrs);
-}
-
-// Populate a dropdown with options while preserving selection if possible
-function populateDropdown(selectElement, options, currentValue) {
-    const placeholder = selectElement === moduleSelect ? '-- Select Module --' : 
-                       selectElement === techSelect ? '-- Select Technology --' : 
-                       '-- Select Manufacturer --';
-    
-    selectElement.innerHTML = `<option value="">${placeholder}</option>`;
-    
-    options.forEach(option => {
-        const opt = document.createElement('option');
-        opt.value = option;
-        opt.textContent = selectElement === moduleSelect ? `${option} kWp` : option;
-        selectElement.appendChild(opt);
-    });
-    
-    // Restore selection if it's still available
-    if (currentValue && options.includes(String(currentValue))) {
-        selectElement.value = currentValue;
-    } else {
-        selectElement.value = '';
-    }
-}
-
-// MAIN FUNCTION: Called whenever any dropdown changes
-function updateAllDropdowns() {
-    const tech = techSelect.value;
-    const mfr = mfrSelect.value;
-    const module = moduleSelect.value;
-
-    // ============ UPDATE TECHNOLOGY DROPDOWN ============
-    let availableTechs = [];
-    if (mfr && module) {
-        // Both manufacturer and module selected
-        // Show only tech that this manufacturer has for this module
-        for (let t in moduleData[mfr]) {
-            if (moduleData[mfr][t].includes(Number(module))) {
-                availableTechs.push(t);
-            }
-        }
-    } else if (mfr) {
-        // Only manufacturer selected
-        // Show all techs this manufacturer has
-        availableTechs = getTechnologiesForManufacturer(mfr);
-    } else if (module) {
-        // Only module selected
-        // Show all techs that have this module
-        availableTechs = getTechnologiesWithModule(module);
-    } else {
-        // Nothing selected - show all techs
-        availableTechs = ['Polycrystalline', 'Mono PERC', 'Topcon', 'HJT'];
-    }
-    
-    populateDropdown(techSelect, availableTechs, tech);
-
-    // ============ UPDATE MANUFACTURER DROPDOWN ============
-    let availableMfrs = [];
-    if (tech && module) {
-        // Both technology and module selected
-        // Show only mfr that has this tech AND this module
-        for (let mfr in moduleData) {
-            if (moduleData[mfr][tech] && moduleData[mfr][tech].includes(Number(module))) {
-                availableMfrs.push(mfr);
-            }
-        }
-    } else if (tech) {
-        // Only technology selected
-        // Show all mfrs that have this tech
-        availableMfrs = getManufacturersWithTechnology(tech);
-    } else if (module) {
-        // Only module selected
-        // Show all mfrs that have this module
-        availableMfrs = getManufacturersWithModule(module);
-    } else {
-        // Nothing selected - show all manufacturers
-        availableMfrs = Object.keys(moduleData);
-    }
-    
-    populateDropdown(mfrSelect, availableMfrs, mfr);
-
-    // ============ UPDATE MODULE DROPDOWN ============
-    let availableModules = [];
-    if (tech && mfr) {
-        // Both tech and mfr selected
-        // Show exact modules for this combination
-        availableModules = (moduleData[mfr] && moduleData[mfr][tech]) 
-            ? moduleData[mfr][tech].map(m => String(m)) 
-            : [];
-    } else if (tech) {
-        // Only tech selected
-        // Show all modules with this tech
-        availableModules = getModulesWithTechnology(tech).map(m => String(m));
-    } else if (mfr) {
-        // Only mfr selected
-        // Show all modules from this mfr
-        availableModules = getModulesForManufacturer(mfr).map(m => String(m));
-    } else {
-        // Nothing selected - show all modules
-        const allModules = new Set();
-        for (let mfr in moduleData) {
-            for (let tech in moduleData[mfr]) {
-                moduleData[mfr][tech].forEach(m => allModules.add(m));
-            }
-        }
-        availableModules = Array.from(allModules).sort((a, b) => a - b).map(m => String(m));
-    }
-    
-    populateDropdown(moduleSelect, availableModules, module);
-
-    // ============ SHOW/HIDE DETAILS ============
-    if (tech && mfr && module) {
-        document.getElementById('detailTech').textContent = tech;
-        document.getElementById('detailMfr').textContent = mfr;
-        document.getElementById('detailModule').textContent = `${module} kWp`;
-        moduleDetails.classList.add('show');
-
-        // Save to Firebase
-        saveSelectionToFirebase(tech, mfr, module);
-    } else {
-        moduleDetails.classList.remove('show');
-    }
-}
-
-// Save selection to Firebase
-async function saveSelectionToFirebase(tech, mfr, module) {
-    try {
-        await addDoc(collection(db, "selections"), {
-            userId: auth.currentUser?.uid || "anonymous",
-            userEmail: auth.currentUser?.email || "unknown",
-            technology: tech,
-            manufacturer: mfr,
-            moduleCapacity: module,
-            timestamp: new Date(),
-            status: "pending"
-        });
-
-        document.getElementById('detailStatus').textContent = "Saved to backend ✅";
-    } catch (err) {
-        console.error(err);
-        document.getElementById('detailStatus').textContent = "Error saving ❌";
-    }
-}
-
-// ============================================
-// EVENT LISTENERS (All three call the same function)
-// ============================================
-
-techSelect.addEventListener('change', updateAllDropdowns);
-mfrSelect.addEventListener('change', updateAllDropdowns);
-moduleSelect.addEventListener('change', updateAllDropdowns);
-
-// ============================================
-// BUTTON FUNCTIONS
-// ============================================
-
-function resetForm() {
-    techSelect.value = '';
-    mfrSelect.value = '';
-    moduleSelect.value = '';
-    moduleDetails.classList.remove('show');
-    updateAllDropdowns(); // Refresh all dropdowns to show all options
-}
-
-async function submitFeedback() {
-    const feedbackText = document.getElementById('feedback').value.trim();
-    const successMsg = document.getElementById('feedbackSuccess');
-
-    if (!feedbackText) {
-        alert('Please enter feedback');
-        return;
-    }
-
-    try {
-        await addDoc(collection(db, "feedback"), {
-            userId: auth.currentUser?.uid || "anonymous",
-            userEmail: auth.currentUser?.email || "unknown",
-            feedback: feedbackText,
-            timestamp: new Date()
-        });
-
-        successMsg.classList.add('show');
-        document.getElementById('feedback').value = '';
-
-        setTimeout(() => {
-            successMsg.classList.remove('show');
-        }, 3000);
-
-    } catch (err) {
-        alert("Error saving feedback: " + err.message);
-        console.error(err);
-    }
-}
-
-// ============================================
-// BUTTON EVENT LISTENERS
-// ============================================
-
-document.getElementById('resetBtn').addEventListener('click', resetForm);
-document.getElementById('submitBtn').addEventListener('click', submitFeedback);
-
-// Initialize dropdowns on page load
-updateAllDropdowns();
-    // At the end of your module script, add:
-// document.getElementById('resetBtn').addEventListener('click', function() {
-//     techSelect.value = '';
-//     mfrSelect.value = '';
-//     mfrSelect.disabled = true;
-//     moduleSelect.value = '';
-//     moduleSelect.disabled = true;
-//     moduleSelect.innerHTML = '<option value="">-- Select Module --</option>';
-//     moduleDetails.classList.remove('show');
-// });
-
-// document.getElementById('submitBtn').addEventListener('click', async function() {
-//     const feedbackText = document.getElementById('feedback').value.trim();
-//     const successMsg = document.getElementById('feedbackSuccess');
-
-//     if (!feedbackText) {
-//         alert('Please enter feedback');
-//         return;
-//     }
-
-//     try {
-//         await addDoc(collection(db, "feedback"), {
-//             userId: auth.currentUser?.uid || "anonymous",
-//             userEmail: auth.currentUser?.email || "unknown",
-//             feedback: feedbackText,
-//             timestamp: new Date()
-//         });
-
-//         successMsg.classList.add('show');
-//         document.getElementById('feedback').value = '';
-
-//         setTimeout(() => {
-//             successMsg.classList.remove('show');
-//         }, 3000);
-
-//     } catch (err) {
-//         alert("Error saving feedback");
-//         console.error(err);
-//     }
-// });    
-// // At the end of your module script, add:
-
-// // Make functions accessible globally
-// window.resetForm = function() {
-//     techSelect.value = '';
-//     mfrSelect.value = '';
-//     mfrSelect.disabled = true;
-//     moduleSelect.value = '';
-//     moduleSelect.disabled = true;
-//     moduleSelect.innerHTML = '<option value="">-- Select Module --</option>';
-//     moduleDetails.classList.remove('show');
-// }
-
-// window.submitFeedback = async function() {
-//     const feedbackText = document.getElementById('feedback').value.trim();
-//     const successMsg = document.getElementById('feedbackSuccess');
-
-//     if (!feedbackText) {
-//         alert('Please enter feedback');
-//         return;
-//     }
-
-//     try {
-//         await addDoc(collection(db, "feedback"), {
-//             userId: auth.currentUser?.uid || "anonymous",
-//             userEmail: auth.currentUser?.email || "unknown",
-//             feedback: feedbackText,
-//             timestamp: new Date()
-//         });
-
-//         successMsg.classList.add('show');
-//         document.getElementById('feedback').value = '';
-
-//         setTimeout(() => {
-//             successMsg.classList.remove('show');
-//         }, 3000);
-
-//     } catch (err) {
-//         alert("Error saving feedback: " + err.message);
-//         console.error(err);
-//     }
-// }
-
-// // Add click listeners
-// document.getElementById('resetBtn').addEventListener('click', window.resetForm);
-// document.getElementById('submitBtn').addEventListener('click', window.submitFeedback);
-    </script>
-</body>
-</html>  -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar PV Module Selector</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(90deg, #336744 0%, #04f438 100%);
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-
-        .wrapper {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .container {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            width: 100%;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 28px;
-            text-align: center;
-        }
-
-        .subtitle {
-            color: #666;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-            color: white;
             background-color: #0D8359;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -1247,6 +503,33 @@ updateAllDropdowns();
         return Array.from(mfrs);
     }
 
+    function getAllModules() {
+        const modules = new Set();
+        for (let cellTech in moduleData) {
+            for (let mfgTech in moduleData[cellTech]) {
+                for (let mfr in moduleData[cellTech][mfgTech]) {
+                    moduleData[cellTech][mfgTech][mfr].forEach(m => modules.add(m.name));
+                }
+            }
+        }
+        return Array.from(modules).sort();
+    }
+
+    function findModuleProperties(moduleName) {
+        // Returns {cellTech, mfgTech, manufacturer} for a given module name
+        for (let cellTech in moduleData) {
+            for (let mfgTech in moduleData[cellTech]) {
+                for (let mfr in moduleData[cellTech][mfgTech]) {
+                    const found = moduleData[cellTech][mfgTech][mfr].find(m => m.name === moduleName);
+                    if (found) {
+                        return { cellTech, mfgTech, manufacturer: mfr, module: found };
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     function getCompatibleCellTechs(mfgTech, mfr, module) {
         const techs = [];
         for (let cellTech in moduleData) {
@@ -1446,10 +729,30 @@ updateAllDropdowns();
         }
         populateDropdown(mfrSelect, compatibleMfrs, mfr, '-- Select Manufacturer --');
 
-        // Update Module
+        // Update Module - Show ALL modules initially, then filter if needed
         let compatibleModules = [];
         if (cellTech && mfgTech && mfr) {
+            // If all three are selected, show exact modules for this combination
             compatibleModules = getCompatibleModules(cellTech, mfgTech, mfr);
+        } else if (cellTech && mfgTech) {
+            // If cell tech and mfg tech are selected, show all modules for that combination
+            for (let mfr2 in moduleData[cellTech][mfgTech]) {
+                moduleData[cellTech][mfgTech][mfr2].forEach(m => {
+                    if (!compatibleModules.includes(m.name)) compatibleModules.push(m.name);
+                });
+            }
+        } else if (cellTech) {
+            // If only cell tech is selected, show all modules for that cell tech
+            for (let mfgTech2 in moduleData[cellTech]) {
+                for (let mfr2 in moduleData[cellTech][mfgTech2]) {
+                    moduleData[cellTech][mfgTech2][mfr2].forEach(m => {
+                        if (!compatibleModules.includes(m.name)) compatibleModules.push(m.name);
+                    });
+                }
+            }
+        } else {
+            // Show ALL modules from the start
+            compatibleModules = getAllModules();
         }
         populateDropdown(moduleSelect, compatibleModules, module, '-- Select Module --');
 
@@ -1507,7 +810,21 @@ updateAllDropdowns();
     cellTechSelect.addEventListener('change', updateAllDropdowns);
     mfgTechSelect.addEventListener('change', updateAllDropdowns);
     mfrSelect.addEventListener('change', updateAllDropdowns);
-    moduleSelect.addEventListener('change', updateAllDropdowns);
+    
+    // Special handler for module selection - auto-fill other dropdowns
+    moduleSelect.addEventListener('change', function() {
+        const selectedModule = this.value;
+        if (selectedModule) {
+            const props = findModuleProperties(selectedModule);
+            if (props) {
+                // Auto-fill the other dropdowns based on the selected module
+                cellTechSelect.value = props.cellTech;
+                mfgTechSelect.value = props.mfgTech;
+                mfrSelect.value = props.manufacturer;
+            }
+        }
+        updateAllDropdowns();
+    });
 
     // ============================================
     // BUTTON FUNCTIONS
@@ -1554,8 +871,924 @@ updateAllDropdowns();
     document.getElementById('resetBtn').addEventListener('click', resetForm);
     document.getElementById('submitBtn').addEventListener('click', submitFeedback);
 
-    // Initialize
+    // Initialize - populate all dropdowns including modules
     updateAllDropdowns();
+    
+    // Show all modules on initial load
+    const allModules = getAllModules();
+    populateDropdown(moduleSelect, allModules, '', '-- Select Module --');
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar PV Module Selector</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(90deg, #336744 0%, #04f438 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            color: white;
+            background-color: #0D8359;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+
+        select:hover {
+            border-color: #0D8359;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #0D8359;
+            box-shadow: 0 0 0 3px rgba(13, 131, 89, 0.1);
+        }
+
+        .module-details {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #0D835915 0%, #04f43815 100%);
+            border-radius: 12px;
+            display: none;
+            border: 2px solid #0D8359;
+        }
+
+        .module-details.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .module-details h3 {
+            color: #0D8359;
+            margin-bottom: 15px;
+            font-size: 18px;
+            border-bottom: 2px solid #0D8359;
+            padding-bottom: 10px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .detail-value {
+            color: #0D8359;
+            font-weight: 600;
+        }
+
+        .reset-btn {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background-color: #0D8359;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 131, 89, 0.4);
+        }
+
+        .reset-btn:active {
+            transform: translateY(0);
+        }
+
+        .feedback-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .feedback-container h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            color: white;
+            background-color: #0D8359;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            resize: vertical;
+            min-height: 120px;
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #0D8359;
+            box-shadow: 0 0 0 3px rgba(13, 131, 89, 0.1);
+        }
+
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .submit-btn {
+            margin-top: 15px;
+            width: 100%;
+            padding: 12px;
+            background-color: #0D8359;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0a5f41;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 131, 89, 0.4);
+        }
+
+        .feedback-success {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .feedback-success.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <h1>Solar PV Module Selector</h1>
+            <p class="subtitle">Select cell technology, manufacturing technology, manufacturer, and module (in any order)</p>
+
+            <div class="form-group">
+                <label for="cellTech">Cell Technology</label>
+                <select id="cellTech">
+                    <option value="">-- Select Cell Technology --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mfgTech">Manufacturing Technology</label>
+                <select id="mfgTech">
+                    <option value="">-- Select Manufacturing Technology --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="manufacturer">Manufacturer</label>
+                <select id="manufacturer">
+                    <option value="">-- Select Manufacturer --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="module">Module</label>
+                <select id="module">
+                    <option value="">-- Select Module --</option>
+                </select>
+            </div>
+
+            <div class="module-details" id="moduleDetails">
+                <h3>Selected Module Specifications</h3>
+                <div class="detail-item">
+                    <span class="detail-label">Cell Technology:</span>
+                    <span class="detail-value" id="detailCellTech">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Manufacturing Tech:</span>
+                    <span class="detail-value" id="detailMfgTech">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Manufacturer:</span>
+                    <span class="detail-value" id="detailMfr">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Module Name:</span>
+                    <span class="detail-value" id="detailModuleName">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Voltage (V):</span>
+                    <span class="detail-value" id="detailVoltage">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Current (A):</span>
+                    <span class="detail-value" id="detailCurrent">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Efficiency (%):</span>
+                    <span class="detail-value" id="detailEfficiency">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Power (W):</span>
+                    <span class="detail-value" id="detailPower">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Status:</span>
+                    <span class="detail-value" id="detailStatus">Ready to send to backend</span>
+                </div>
+                <button class="reset-btn" id="resetBtn">Reset Selection</button>
+            </div>
+        </div>
+
+        <div class="feedback-container">
+            <h2>Feedback</h2>
+            <p class="subtitle">Share your thoughts and suggestions with us</p>
+            
+            <div class="form-group">
+                <label for="feedback">Your Feedback</label>
+                <textarea id="feedback" placeholder="Tell us about your experience with the module selector..."></textarea>
+            </div>
+
+            <button class="submit-btn" id="submitBtn">Submit Feedback</button>
+            
+            <div class="feedback-success" id="feedbackSuccess">
+                ✓ Thank you! Your feedback has been submitted successfully.
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, updateDoc, doc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBLsFgjA2EDVCw1TZFejwY3mOzu5aIDpF4",
+      authDomain: "sueng-tech-d854e.firebaseapp.com",
+      projectId: "sueng-tech-d854e",
+      storageBucket: "sueng-tech-d854e.appspot.com",
+      messagingSenderId: "868647762893",
+      appId: "1:868647762893:web:d1e5259263567bab7ca284"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    // ============================================
+    // MODULE DATA
+    // ============================================
+    const moduleData = {
+        "Polycrystalline": {
+            "Monofacial_full cell": {
+                "Vikram": [
+                    { name: "Vikram Somera 350 Poly", voltage: 39.7, current: 8.83, efficiency: 17.78, power: 350 }
+                ],
+                "Waaree": [
+                    { name: "Waaree Energize 335 Poly", voltage: 37.2, current: 9.0, efficiency: 17.2, power: 335 }
+                ]
+            }
+        },
+        "Mono PERC": {
+            "Monofacial_full cell": {
+                "Vikram": [
+                    { name: "Vikram Somera 390 MF FC", voltage: 37.2, current: 10.48, efficiency: 20.1, power: 390 }
+                ],
+                "Waaree": [
+                    { name: "Waaree Energize 381 MF FC", voltage: 37.5, current: 10.15, efficiency: 19.6, power: 381 }
+                ]
+            },
+            "Monofacial_half cut": {
+                "Vikram": [
+                    { name: "Vikram Somera 530 MF HC", voltage: 41.1, current: 12.89, efficiency: 20.5, power: 530 }
+                ],
+                "Waaree": [
+                    { name: "Waaree Energize 530 MF HC", voltage: 41.1, current: 12.8, efficiency: 20.3, power: 530 }
+                ]
+            },
+            "Bifacial_full cell": {
+                "Vikram": [
+                    { name: "Vikram Somera 395 BF FC", voltage: 37.6, current: 10.5, efficiency: 20.4, power: 395 }
+                ],
+                "Waaree": [
+                    { name: "Waaree Energize 385 BF FC", voltage: 37.7, current: 10.2, efficiency: 19.8, power: 385 }
+                ]
+            },
+            "Bifacial_half cut": {
+                "Vikram": [
+                    { name: "Vikram Somera 535 BF HC", voltage: 41.2, current: 12.98, efficiency: 20.7, power: 535 }
+                ],
+                "Waaree": [
+                    { name: "Waaree Energize 535 BF HC", voltage: 41.2, current: 12.85, efficiency: 20.5, power: 535 }
+                ]
+            }
+        },
+        "TopCon": {
+            "Monofacial_full cell": {
+                "Vikram": [
+                    { name: "Vikram Hypersol 550 MF FC", voltage: 41.5, current: 13.25, efficiency: 21.3, power: 550 }
+                ],
+                "Waaree": [
+                    { name: "Waaree Saahas 423 MF FC", voltage: 37.9, current: 11.15, efficiency: 21.8, power: 423 }
+                ]
+            },
+            "Monofacial_half cut": {
+                "Vikram": [
+                    { name: "Vikram Hypersol 575 MF HC", voltage: 42.1, current: 13.66, efficiency: 22.3, power: 575 }
+                ],
+                "Waaree": [
+                    { name: "Waaree Saahas 545 MF HC", voltage: 41.5, current: 13.13, efficiency: 21.1, power: 545 }
+                ]
+            },
+            "Bifacial_full cell": {
+                "Vikram": [
+                    { name: "Vikram Hypersol 555 BF FC", voltage: 41.6, current: 13.34, efficiency: 21.5, power: 555 }
+                ],
+                "Waaree": [
+                    { name: "Waaree Saahas 425 BF FC", voltage: 38.0, current: 11.2, efficiency: 21.9, power: 425 }
+                ]
+            },
+            "Bifacial_half cut": {
+                "Vikram": [
+                    { name: "Vikram Hypersol 580 BF HC", voltage: 42.2, current: 13.74, efficiency: 22.5, power: 580 }
+                ],
+                "Waaree": [
+                    { name: "Waaree Saahas 550 BF HC", voltage: 41.5, current: 13.25, efficiency: 21.3, power: 550 }
+                ]
+            }
+        },
+        "HJT": {
+            "Monofacial_full cell": {
+                "Vikram": [
+                    { name: "Vikram Suryava 560 MF FC", voltage: 41.7, current: 13.42, efficiency: 21.7, power: 560 }
+                ],
+                "Waaree": [
+                    { name: "Waaree Plexus 560 MF FC", voltage: 41.7, current: 13.4, efficiency: 21.7, power: 560 }
+                ]
+            },
+            "Monofacial_half cut": {
+                "Vikram": [
+                    { name: "Vikram Suryava 590 MF HC", voltage: 42.5, current: 13.88, efficiency: 22.8, power: 590 }
+                ],
+                "Waaree": [
+                    { name: "Waaree Plexus 575 MF HC", voltage: 42.2, current: 13.6, efficiency: 22.2, power: 575 }
+                ]
+            },
+            "Bifacial_full cell": {
+                "Vikram": [
+                    { name: "Vikram Suryava 565 BF FC", voltage: 41.8, current: 13.51, efficiency: 21.9, power: 565 }
+                ],
+                "Waaree": [
+                    { name: "Waaree Plexus 565 BF FC", voltage: 41.8, current: 13.5, efficiency: 21.9, power: 565 }
+                ]
+            },
+            "Bifacial_half cut": {
+                "Vikram": [
+                    { name: "Vikram Suryava 595 BF HC", voltage: 42.6, current: 13.96, efficiency: 23.0, power: 595 }
+                ],
+                "Waaree": [
+                    { name: "Waaree Plexus 730 BF HC", voltage: 37.5, current: 19.46, efficiency: 23.5, power: 730 }
+                ]
+            }
+        }
+    };
+
+    // ============================================
+    // DOM ELEMENTS
+    // ============================================
+    const cellTechSelect = document.getElementById('cellTech');
+    const mfgTechSelect = document.getElementById('mfgTech');
+    const mfrSelect = document.getElementById('manufacturer');
+    const moduleSelect = document.getElementById('module');
+    const moduleDetails = document.getElementById('moduleDetails');
+
+    // ============================================
+    // BI-DIRECTIONAL FILTERING - HELPER FUNCTIONS
+    // ============================================
+
+    function getAllCellTechs() {
+        return Object.keys(moduleData);
+    }
+
+    function getAllMfgTechs() {
+        const mfgTechs = new Set();
+        for (let cellTech in moduleData) {
+            Object.keys(moduleData[cellTech]).forEach(mfg => mfgTechs.add(mfg));
+        }
+        return Array.from(mfgTechs);
+    }
+
+    function getAllManufacturers() {
+        const mfrs = new Set();
+        for (let cellTech in moduleData) {
+            for (let mfgTech in moduleData[cellTech]) {
+                Object.keys(moduleData[cellTech][mfgTech]).forEach(mfr => mfrs.add(mfr));
+            }
+        }
+        return Array.from(mfrs);
+    }
+
+    function getAllModules() {
+        const modules = new Set();
+        for (let cellTech in moduleData) {
+            for (let mfgTech in moduleData[cellTech]) {
+                for (let mfr in moduleData[cellTech][mfgTech]) {
+                    moduleData[cellTech][mfgTech][mfr].forEach(m => modules.add(m.name));
+                }
+            }
+        }
+        return Array.from(modules).sort();
+    }
+
+    function findModuleProperties(moduleName) {
+        // Returns {cellTech, mfgTech, manufacturer} for a given module name
+        for (let cellTech in moduleData) {
+            for (let mfgTech in moduleData[cellTech]) {
+                for (let mfr in moduleData[cellTech][mfgTech]) {
+                    const found = moduleData[cellTech][mfgTech][mfr].find(m => m.name === moduleName);
+                    if (found) {
+                        return { cellTech, mfgTech, manufacturer: mfr, module: found };
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    function getCompatibleCellTechs(mfgTech, mfr, module) {
+        const techs = [];
+        for (let cellTech in moduleData) {
+            if (moduleData[cellTech][mfgTech] && moduleData[cellTech][mfgTech][mfr]) {
+                if (module) {
+                    const hasModule = moduleData[cellTech][mfgTech][mfr].some(m => m.name === module);
+                    if (hasModule) techs.push(cellTech);
+                } else {
+                    techs.push(cellTech);
+                }
+            }
+        }
+        return techs;
+    }
+
+    function getCompatibleMfgTechs(cellTech, mfr, module) {
+        const mfgTechs = [];
+        if (moduleData[cellTech]) {
+            for (let mfgTech in moduleData[cellTech]) {
+                if (moduleData[cellTech][mfgTech][mfr]) {
+                    if (module) {
+                        const hasModule = moduleData[cellTech][mfgTech][mfr].some(m => m.name === module);
+                        if (hasModule) mfgTechs.push(mfgTech);
+                    } else {
+                        mfgTechs.push(mfgTech);
+                    }
+                }
+            }
+        }
+        return mfgTechs;
+    }
+
+    function getCompatibleManufacturers(cellTech, mfgTech, module) {
+        const mfrs = [];
+        if (cellTech && mfgTech && moduleData[cellTech] && moduleData[cellTech][mfgTech]) {
+            for (let mfr in moduleData[cellTech][mfgTech]) {
+                if (module) {
+                    const hasModule = moduleData[cellTech][mfgTech][mfr].some(m => m.name === module);
+                    if (hasModule) mfrs.push(mfr);
+                } else {
+                    mfrs.push(mfr);
+                }
+            }
+        } else if (mfgTech || module) {
+            for (let cellTech2 in moduleData) {
+                if (moduleData[cellTech2][mfgTech]) {
+                    for (let mfr in moduleData[cellTech2][mfgTech]) {
+                        if (!mfrs.includes(mfr)) mfrs.push(mfr);
+                    }
+                }
+            }
+        }
+        return mfrs;
+    }
+
+    function getCompatibleModules(cellTech, mfgTech, mfr) {
+        if (cellTech && mfgTech && mfr && moduleData[cellTech] && moduleData[cellTech][mfgTech] && moduleData[cellTech][mfgTech][mfr]) {
+            return moduleData[cellTech][mfgTech][mfr].map(m => m.name);
+        }
+        return [];
+    }
+
+    function populateDropdown(selectElement, options, currentValue, placeholder) {
+        selectElement.innerHTML = `<option value="">${placeholder}</option>`;
+        
+        options.forEach(option => {
+            const opt = document.createElement('option');
+            opt.value = option;
+            opt.textContent = option;
+            selectElement.appendChild(opt);
+        });
+        
+        if (currentValue && options.includes(currentValue)) {
+            selectElement.value = currentValue;
+        } else {
+            selectElement.value = '';
+        }
+    }
+
+    // ============================================
+    // MAIN UPDATE FUNCTION - BI-DIRECTIONAL
+    // ============================================
+    function updateAllDropdowns() {
+        const cellTech = cellTechSelect.value;
+        const mfgTech = mfgTechSelect.value;
+        const mfr = mfrSelect.value;
+        const module = moduleSelect.value;
+
+        // Update Cell Technology
+        let compatibleCellTechs = [];
+        if (mfgTech || mfr || module) {
+            if (mfgTech && mfr && module) {
+                compatibleCellTechs = getCompatibleCellTechs(mfgTech, mfr, module);
+            } else if (mfgTech && mfr) {
+                compatibleCellTechs = getCompatibleCellTechs(mfgTech, mfr);
+            } else if (mfgTech && module) {
+                compatibleCellTechs = getCompatibleCellTechs(mfgTech, '', module);
+            } else if (mfgTech) {
+                const mfgs = new Set();
+                for (let ct in moduleData) {
+                    if (moduleData[ct][mfgTech]) mfgs.add(ct);
+                }
+                compatibleCellTechs = Array.from(mfgs);
+            } else if (mfr && module) {
+                for (let ct in moduleData) {
+                    for (let mft in moduleData[ct]) {
+                        if (moduleData[ct][mft][mfr] && moduleData[ct][mft][mfr].some(m => m.name === module)) {
+                            if (!compatibleCellTechs.includes(ct)) compatibleCellTechs.push(ct);
+                        }
+                    }
+                }
+            } else if (mfr) {
+                for (let ct in moduleData) {
+                    for (let mft in moduleData[ct]) {
+                        if (moduleData[ct][mft][mfr]) {
+                            if (!compatibleCellTechs.includes(ct)) compatibleCellTechs.push(ct);
+                        }
+                    }
+                }
+            } else if (module) {
+                for (let ct in moduleData) {
+                    for (let mft in moduleData[ct]) {
+                        for (let mfr2 in moduleData[ct][mft]) {
+                            if (moduleData[ct][mft][mfr2].some(m => m.name === module)) {
+                                if (!compatibleCellTechs.includes(ct)) compatibleCellTechs.push(ct);
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            compatibleCellTechs = getAllCellTechs();
+        }
+        populateDropdown(cellTechSelect, compatibleCellTechs, cellTech, '-- Select Cell Technology --');
+
+        // Update Manufacturing Technology
+        let compatibleMfgTechs = [];
+        if (cellTech || mfr || module) {
+            if (cellTech && mfr && module) {
+                compatibleMfgTechs = getCompatibleMfgTechs(cellTech, mfr, module);
+            } else if (cellTech && mfr) {
+                compatibleMfgTechs = getCompatibleMfgTechs(cellTech, mfr);
+            } else if (cellTech) {
+                compatibleMfgTechs = Object.keys(moduleData[cellTech] || {});
+            } else if (mfr && module) {
+                for (let ct in moduleData) {
+                    for (let mft in moduleData[ct]) {
+                        if (moduleData[ct][mft][mfr] && moduleData[ct][mft][mfr].some(m => m.name === module)) {
+                            if (!compatibleMfgTechs.includes(mft)) compatibleMfgTechs.push(mft);
+                        }
+                    }
+                }
+            } else if (mfr) {
+                for (let ct in moduleData) {
+                    for (let mft in moduleData[ct]) {
+                        if (moduleData[ct][mft][mfr]) {
+                            if (!compatibleMfgTechs.includes(mft)) compatibleMfgTechs.push(mft);
+                        }
+                    }
+                }
+            } else if (module) {
+                for (let ct in moduleData) {
+                    for (let mft in moduleData[ct]) {
+                        for (let mfr2 in moduleData[ct][mft]) {
+                            if (moduleData[ct][mft][mfr2].some(m => m.name === module)) {
+                                if (!compatibleMfgTechs.includes(mft)) compatibleMfgTechs.push(mft);
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            compatibleMfgTechs = getAllMfgTechs();
+        }
+        populateDropdown(mfgTechSelect, compatibleMfgTechs, mfgTech, '-- Select Manufacturing Technology --');
+
+        // Update Manufacturer
+        let compatibleMfrs = [];
+        if ((cellTech && mfgTech) || mfr || module) {
+            if (cellTech && mfgTech) {
+                compatibleMfrs = getCompatibleManufacturers(cellTech, mfgTech, module);
+            } else if (mfr) {
+                compatibleMfrs = [mfr];
+            } else if (module) {
+                for (let ct in moduleData) {
+                    for (let mft in moduleData[ct]) {
+                        for (let mfr2 in moduleData[ct][mft]) {
+                            if (moduleData[ct][mft][mfr2].some(m => m.name === module)) {
+                                if (!compatibleMfrs.includes(mfr2)) compatibleMfrs.push(mfr2);
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            compatibleMfrs = getAllManufacturers();
+        }
+        populateDropdown(mfrSelect, compatibleMfrs, mfr, '-- Select Manufacturer --');
+
+        // Update Module - Show ALL modules initially, then filter if needed
+        let compatibleModules = [];
+        if (cellTech && mfgTech && mfr) {
+            // If all three are selected, show exact modules for this combination
+            compatibleModules = getCompatibleModules(cellTech, mfgTech, mfr);
+        } else if (cellTech && mfgTech) {
+            // If cell tech and mfg tech are selected, show all modules for that combination
+            for (let mfr2 in moduleData[cellTech][mfgTech]) {
+                moduleData[cellTech][mfgTech][mfr2].forEach(m => {
+                    if (!compatibleModules.includes(m.name)) compatibleModules.push(m.name);
+                });
+            }
+        } else if (cellTech) {
+            // If only cell tech is selected, show all modules for that cell tech
+            for (let mfgTech2 in moduleData[cellTech]) {
+                for (let mfr2 in moduleData[cellTech][mfgTech2]) {
+                    moduleData[cellTech][mfgTech2][mfr2].forEach(m => {
+                        if (!compatibleModules.includes(m.name)) compatibleModules.push(m.name);
+                    });
+                }
+            }
+        } else {
+            // Show ALL modules from the start
+            compatibleModules = getAllModules();
+        }
+        populateDropdown(moduleSelect, compatibleModules, module, '-- Select Module --');
+
+        // Show details if all selected
+        if (cellTech && mfgTech && mfr && module) {
+            const selectedModule = moduleData[cellTech][mfgTech][mfr].find(m => m.name === module);
+            if (selectedModule) {
+                document.getElementById('detailCellTech').textContent = cellTech;
+                document.getElementById('detailMfgTech').textContent = mfgTech;
+                document.getElementById('detailMfr').textContent = mfr;
+                document.getElementById('detailModuleName').textContent = selectedModule.name;
+                document.getElementById('detailVoltage').textContent = selectedModule.voltage;
+                document.getElementById('detailCurrent').textContent = selectedModule.current;
+                document.getElementById('detailEfficiency').textContent = selectedModule.efficiency;
+                document.getElementById('detailPower').textContent = selectedModule.power;
+                moduleDetails.classList.add('show');
+
+                saveSelectionToFirebase(cellTech, mfgTech, mfr, selectedModule);
+            }
+        } else {
+            moduleDetails.classList.remove('show');
+        }
+    }
+
+    // ============================================
+    // SAVE TO FIREBASE - Update Existing or Create New
+    // ============================================
+    async function saveSelectionToFirebase(cellTech, mfgTech, mfr, module) {
+        try {
+            const userId = auth.currentUser?.uid || "anonymous";
+            const userEmail = auth.currentUser?.email || "unknown";
+
+            // Query if this user already has a selection
+            const q = query(collection(db, "selections"), where("userId", "==", userId));
+            const querySnapshot = await getDocs(q);
+
+            if (querySnapshot.size > 0) {
+                // User already has a selection - UPDATE it
+                const existingDoc = querySnapshot.docs[0];
+                
+                await updateDoc(doc(db, "selections", existingDoc.id), {
+                    cellTechnology: cellTech,
+                    manufacturingTechnology: mfgTech,
+                    manufacturer: mfr,
+                    moduleName: module.name,
+                    voltage: module.voltage,
+                    current: module.current,
+                    efficiency: module.efficiency,
+                    power: module.power,
+                    timestamp: new Date(),
+                    status: "pending"
+                });
+
+                document.getElementById('detailStatus').textContent = "Selection updated ✅";
+                console.log("Updated existing selection");
+            } else {
+                // First time - CREATE new selection
+                await addDoc(collection(db, "selections"), {
+                    userId: userId,
+                    userEmail: userEmail,
+                    cellTechnology: cellTech,
+                    manufacturingTechnology: mfgTech,
+                    manufacturer: mfr,
+                    moduleName: module.name,
+                    voltage: module.voltage,
+                    current: module.current,
+                    efficiency: module.efficiency,
+                    power: module.power,
+                    timestamp: new Date(),
+                    status: "pending"
+                });
+
+                document.getElementById('detailStatus').textContent = "Selection saved ✅";
+                console.log("Created new selection");
+            }
+        } catch (err) {
+            console.error(err);
+            document.getElementById('detailStatus').textContent = "Error saving ❌";
+        }
+    }
+
+    // ============================================
+    // EVENT LISTENERS
+    // ============================================
+    cellTechSelect.addEventListener('change', updateAllDropdowns);
+    mfgTechSelect.addEventListener('change', updateAllDropdowns);
+    mfrSelect.addEventListener('change', updateAllDropdowns);
+    
+    // Special handler for module selection - auto-fill other dropdowns
+    moduleSelect.addEventListener('change', function() {
+        const selectedModule = this.value;
+        if (selectedModule) {
+            const props = findModuleProperties(selectedModule);
+            if (props) {
+                // Auto-fill the other dropdowns based on the selected module
+                cellTechSelect.value = props.cellTech;
+                mfgTechSelect.value = props.mfgTech;
+                mfrSelect.value = props.manufacturer;
+            }
+        }
+        updateAllDropdowns();
+    });
+
+    // ============================================
+    // BUTTON FUNCTIONS
+    // ============================================
+    function resetForm() {
+        cellTechSelect.value = '';
+        mfgTechSelect.value = '';
+        mfrSelect.value = '';
+        moduleSelect.value = '';
+        moduleDetails.classList.remove('show');
+        updateAllDropdowns();
+    }
+
+    async function submitFeedback() {
+        const feedbackText = document.getElementById('feedback').value.trim();
+        const successMsg = document.getElementById('feedbackSuccess');
+
+        if (!feedbackText) {
+            alert('Please enter feedback');
+            return;
+        }
+
+        try {
+            await addDoc(collection(db, "feedback"), {
+                userId: auth.currentUser?.uid || "anonymous",
+                userEmail: auth.currentUser?.email || "unknown",
+                feedback: feedbackText,
+                timestamp: new Date()
+            });
+
+            successMsg.classList.add('show');
+            document.getElementById('feedback').value = '';
+
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 3000);
+
+        } catch (err) {
+            alert("Error saving feedback: " + err.message);
+            console.error(err);
+        }
+    }
+
+    document.getElementById('resetBtn').addEventListener('click', resetForm);
+    document.getElementById('submitBtn').addEventListener('click', submitFeedback);
+
+    // Initialize - populate all dropdowns including modules
+    updateAllDropdowns();
+    
+    // Show all modules on initial load
+    const allModules = getAllModules();
+    populateDropdown(moduleSelect, allModules, '', '-- Select Module --');
     </script>
 </body>
 </html>
